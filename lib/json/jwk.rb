@@ -3,7 +3,7 @@ module JSON
     class UnknownAlgorithm < JWT::Exception; end
 
     def initialize(public_key, options = {})
-      replace encode(public_key, options)
+      update encode(public_key, options)
     end
 
     def content_type

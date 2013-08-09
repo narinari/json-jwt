@@ -37,7 +37,7 @@ module JSON
       [:exp, :nbf, :iat].each do |key|
         claims[key] = claims[key].to_i if claims[key]
       end
-      replace claims
+      update claims
     end
 
     def sign(private_key_or_secret, algorithm = :HS256)

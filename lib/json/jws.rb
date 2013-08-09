@@ -5,7 +5,7 @@ module JSON
     class UnexpectedAlgorithm < JWT::UnexpectedAlgorithm; end
 
     def initialize(jwt)
-      replace jwt
+      update jwt
       raise InvalidFormat.new('Signature Algorithm Required') unless algorithm
     end
 
@@ -93,10 +93,11 @@ module JSON
       key.check_key
     end
 
-    def replace(hash_or_jwt)
+    def update(hash_or_jwt)
       super
       if hash_or_jwt.is_a? JSON::JWT
         self.header = hash_or_jwt.header
+        self.alg = hash_or_jwt.algorithm
         self.signature = hash_or_jwt.signature
       end
       self
